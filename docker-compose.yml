@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=c0d4lt3c
+      - MYSQL_DATABASE=codaltec
+    ports:
+      - 3307:3306
+
+  app:
+    build: .
+    depends_on:
+      - mysqldb
+    links:
+      - mysqldb
+    ports:
+      - 3000:3000
+
+# Servidor WEB con NGINX
